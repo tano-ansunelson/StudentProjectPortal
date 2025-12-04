@@ -1,0 +1,147 @@
+﻿﻿@{
+ViewBag.Title = "Student Dashboard";
+
+var student = new
+{
+    Initials = "FO",
+    Name = "Felix Owusu",
+    Email = "felix@st.knust.edu.gh",
+    Major = "Chemistry",
+    Year = "Senior",
+    StudentID = "#20250001"
+};
+
+var projects = new[] {
+        new {
+            Title = "AI-Driven Traffic Control System",
+            Description = "Research and implementation of a smart traffic light optimization system.",
+            Supervisor = "Dr. Sarah Williams",
+            Deadline = "2025-05-15"
+        },
+        new {
+            Title = "Blockchain for Supply Chain",
+            Description = "Building a decentralized system for transparent supply chain tracking.",
+            Supervisor = "Prof. Michael Chen",
+            Deadline = "2025-04-20"
+        },
+        new {
+            Title = "Sustainable Energy Monitor",
+            Description = "IoT-based application for monitoring energy consumption efficiently.",
+            Supervisor = "Dr. Sarah Williams",
+            Deadline = "2025-06-01"
+        }
+    };
+}
+
+<!-- ENTIRE PAGE DARK -->
+<div class="container-fluid py-5 bg-dark text-light mt-4">
+    <div class="row g-4 mt-2">
+
+        <!-- LEFT: STUDENT PROFILE -->
+        <div class="col-lg-4">
+            <div class="card bg-secondary bg-opacity-25 border-secondary border shadow-sm rounded-4 text-light">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold mb-4 d-flex align-items-center text-light">
+                        <i class="bi bi-person-circle me-2 fs-4 text-info"></i>
+                        Student Profile
+                    </h5>
+
+                    <!-- Avatar -->
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="rounded-circle bg-info bg-opacity-25 text-info
+                                    d-flex justify-content-center align-items-center fw-bold me-3 shadow-sm"
+                             style="width:75px; height:75px; font-size:26px;">
+                            @student.Initials
+                        </div>
+
+                        <div>
+                            <h5 class="fw-bold text-white mb-1">@student.Name</h5>
+                            <small class="text-secondary">@student.Email</small>
+                        </div>
+                    </div>
+
+                    <hr class="border-secondary" />
+
+                    <!-- Student Info -->
+                    <div class="mt-3">
+                        <p class="mb-2"><strong class="text-light">Major:</strong> @student.Major</p>
+                        <p class="mb-2"><strong class="text-light">Year:</strong> @student.Year</p>
+                        <p class="mb-0"><strong class="text-light">Student ID:</strong> @student.StudentID</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: PROJECTS -->
+        <div class="col-lg-8">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="fw-bold text-white">Assigned Projects</h3>
+
+                <span class="badge bg-info text-dark px-3 py-2 shadow-sm" style="font-size:0.9rem;">
+                    @projects.Length Active Projects
+                </span>
+            </div>
+
+            <div class="card bg-secondary bg-opacity-25 border-secondary shadow-lg rounded-4">
+
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0">
+
+                        <thead class="table-secondary text-dark">
+                            <tr>
+                                <th>Project Title</th>
+                                <th>Supervisor</th>
+                                <th>Deadline</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var project in projects)
+                            {
+                                <tr>
+
+                                    <!-- TITLE + DESCRIPTION -->
+                                    <td style="width:40%;">
+                                        <div class="fw-semibold text-white">@project.Title</div>
+                                        <small class="text-secondary d-block">@project.Description</small>
+                                    </td>
+
+                                    <!-- SUPERVISOR -->
+                                    <td class="text-light">
+                                        <i class="bi bi-person-workspace me-1 text-info"></i>
+                                        @project.Supervisor
+                                    </td>
+
+                                    <!-- DEADLINE -->
+                                    <td class="text-light">
+                                        <i class="bi bi-calendar-event me-1 text-warning"></i>
+                                        @project.Deadline
+                                    </td>
+
+                                    <!-- SUBMIT BUTTON -->
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-info btn-sm rounded-pill px-3 shadow-sm d-inline-flex align-items-center gap-1">
+                                            Submit <i class="bi bi-arrow-right-short fs-5"></i>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- OPTIONAL PARTIAL -->
+        @Html.Partial("_MyAssignment")
+
+    </div>
+</div>

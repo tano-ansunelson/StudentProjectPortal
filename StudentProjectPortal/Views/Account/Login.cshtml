@@ -1,0 +1,57 @@
+﻿﻿@{
+ViewBag.Title = "Login";
+}
+
+<div class="container-fluid min-vh-100 d-flex p-0">
+    <div class="row flex-fill g-0">
+
+        <!-- LEFT: Login Form -->
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center bg-dark p-4">
+            <div class="card shadow-lg rounded-4 p-4 w-100" style="max-width: 420px; background: #1e1f24; border: none;">
+                <!-- Header -->
+                <div class="text-center mb-4 text-white">
+                    <h1 class="h3 fw-bold">Welcome Back</h1>
+                    <p class="text-secondary mb-1">Login to continue to Project Hub</p>
+                </div>
+
+                <!-- Form -->
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="Email" class="form-label text-white-50">Email</label>
+                        <input type="email" class="form-control bg-dark text-white border-secondary"
+                               id="Email" name="Email" placeholder="me@example.com" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Password" class="form-label text-white-50">Password</label>
+                        <input type="password" class="form-control bg-dark text-white border-secondary"
+                               id="Password" name="Password" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-success fw-semibold py-2">
+                            Login
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Footer -->
+                <div class="text-center mt-4">
+                    <span class="text-white-50">Don’t have an account?</span>
+                    <a asp-controller="Account" asp-action="Register" class="text-success fw-semibold text-decoration-none">
+                        Register
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Image Panel -->
+        <div class="col-md-6 d-none d-md-block">
+            <img src="~/images/cappp.jpg"
+                 alt="Login Image"
+                 class="w-100 h-100"
+                 style="object-fit: cover; object-position: center; filter: brightness(85%);">
+        </div>
+
+    </div>
+</div>
