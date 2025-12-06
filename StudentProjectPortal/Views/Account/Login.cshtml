@@ -1,57 +1,70 @@
-﻿﻿@{
-ViewBag.Title = "Login";
+﻿@using StudentProjectPortal.ViewModels;
+@model LoginViewModel;
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
-<div class="container-fluid min-vh-100 d-flex p-0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container-fluid min-vh-100 d-flex p-0 bg-dark">
     <div class="row flex-fill g-0">
 
-        <!-- LEFT: Login Form -->
-        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center bg-dark p-4">
-            <div class="card shadow-lg rounded-4 p-4 w-100" style="max-width: 420px; background: #1e1f24; border: none;">
-                <!-- Header -->
-                <div class="text-center mb-4 text-white">
-                    <h1 class="h3 fw-bold">Welcome Back</h1>
-                    <p class="text-secondary mb-1">Login to continue to Project Hub</p>
+        <!-- LEFT: FORM -->
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center p-3">
+            <div class="card shadow rounded-4 p-3 w-100" style="max-width: 400px; background: #1e1f24; border: none;">
+
+                <!-- HEADER -->
+                <div class="text-center mb-3 text-white">
+                    <h2 class="fw-bold">Welcome Back</h2>
+                    <p class="text-secondary small">Login to continue to Project Hub</p>
                 </div>
 
-                <!-- Form -->
+                <div asp-validation-summary="All" class="text-danger mb-2"></div>
+
+                <!-- FORM -->
                 <form method="post">
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="Email" class="form-label text-white-50">Email</label>
-                        <input type="email" class="form-control bg-dark text-white border-secondary"
-                               id="Email" name="Email" placeholder="me@example.com" required>
+                        <input type="email" name="Email" id="Email" placeholder="me@example.com"
+                               class="form-control bg-dark text-white border-secondary rounded-3" required />
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="Password" class="form-label text-white-50">Password</label>
-                        <input type="password" class="form-control bg-dark text-white border-secondary"
-                               id="Password" name="Password" placeholder="Enter your password" required>
+                        <input type="password" name="Password" id="Password" placeholder="Enter your password"
+                               class="form-control bg-dark text-white border-secondary rounded-3" required />
                     </div>
 
-                    <div class="d-grid mt-4">
-                        <button type="submit" class="btn btn-success fw-semibold py-2">
-                            Login
-                        </button>
+                    <div class="text-end mb-2">
+                        <a asp-controller="Account" asp-action="ChangePassword" class="text-white-50 text-decoration-none small">
+                            Forgot Password?
+                        </a>
+                    </div>
+
+                    <div class="d-grid mt-2">
+                        <button type="submit" class="btn btn-success fw-semibold rounded-3 py-2">Login</button>
                     </div>
                 </form>
 
-                <!-- Footer -->
-                <div class="text-center mt-4">
-                    <span class="text-white-50">Don’t have an account?</span>
-                    <a asp-controller="Account" asp-action="Register" class="text-success fw-semibold text-decoration-none">
+                <div class="text-center mt-3">
+                    <span class="text-white-50 small">Don't have an account?</span>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-link text-success fw-semibold text-decoration-none small">
                         Register
                     </a>
                 </div>
+
+                <div class="text-center mt-2">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-light btn-sm rounded-3"> &larr; Back to Home </a>
+                </div>
+
             </div>
         </div>
 
-        <!-- RIGHT: Image Panel -->
+        <!-- RIGHT: IMAGE -->
         <div class="col-md-6 d-none d-md-block">
-            <img src="~/images/hat.jpg"
-                 alt="Login Image"
-                 class="w-100 h-100"
-                 style="object-fit: cover; object-position: center; filter: brightness(85%);">
+            <img src="~/images/hat.jpg" class="img-fluid h-100" style="object-fit: cover; object-position: center; filter: brightness(85%);" />
         </div>
-
     </div>
 </div>
