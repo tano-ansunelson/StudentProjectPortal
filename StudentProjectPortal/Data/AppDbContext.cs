@@ -10,6 +10,8 @@ namespace StudentProjectPortal.Data
         {
 
         }
+        public DbSet<SuperVisorUser> SuperVisors { get; set; }
+
 
     }
 }
