@@ -79,7 +79,7 @@
 
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center link-opacity-100-hover">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center link-opacity-10">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -89,16 +89,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-controller="Home" asp-action="About">About Us</a>
                         </li>
-                        <li class="nav-item ms-lg-3">
-                            <a class="btn btn-outline-light d-flex align-items-center" asp-controller="Account" asp-action="Login">
-                                <i class="bi bi-box-arrow-in-right me-2"></i> Login
-                            </a>
-                        </li>
-                        <li class="nav-item ms-lg-2">
-                            <a class="btn btn-outline-light d-flex align-items-center" asp-controller="Account" asp-action="Register">
-                                <i class="bi bi-person-plus me-2"></i> Register
-                            </a>
-                        </li>
+                       <partial  name="_LoginPartial" />
                     </ul>
                 </div>
             </div>
@@ -111,6 +102,7 @@
 
     <!-- Main Content -->
     <main class="container my-4">
+       
         @RenderBody()
     </main>
     <!-- Scripts -->
@@ -133,5 +125,7 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-@Html.Partial("_Footer")
+
+ @Html.Partial("_Footer")
+
 </html>

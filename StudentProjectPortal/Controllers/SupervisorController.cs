@@ -8,5 +8,11 @@ namespace StudentProjectPortal.Controllers
         {
             return View();
         }
+        public IActionResult SupReg()
+        {
+            return View();
+        }
     }
+
+
 }
