@@ -19,10 +19,15 @@ namespace StudentProjectPortal.Controllers
             this.userManager = userManager;
         }
 
+       
+
+
+
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -34,6 +39,8 @@ namespace StudentProjectPortal.Controllers
                     Email = model.Email,
                     UserName = model.Email,
                     ClassId = model.ClassId,
+                    Program = model.Program,
+                    StudentId = model.StudentId,
 
                 };
                 var res = await userManager.CreateAsync(users, model.Password);
@@ -134,7 +141,7 @@ namespace StudentProjectPortal.Controllers
 
 
 
-        [HttpPost]
+     
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {

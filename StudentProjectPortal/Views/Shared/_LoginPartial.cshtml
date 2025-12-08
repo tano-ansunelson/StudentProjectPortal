@@ -1,26 +1,44 @@
-﻿
-
-@using Microsoft.AspNetCore.Identity;
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
 @inject SignInManager<Users> SignInManager
+@inject IHttpContextAccessor HttpContextAccessor
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item ms-lg-3">
-        <a class="nav-link text-bg-danger dark" asp-controller="Account" asp-action="Logout">Logout</a>
-    </li>
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center link-opacity-10">
+ 
 
-}
-else
-{
-    <li class="nav-item ms-lg-3">
-        <a class="btn btn-outline-light d-flex align-items-center" asp-controller="Account" asp-action="Login">
-            <i class="bi bi-box-arrow-in-right me-2"></i> Login
-        </a>
-    </li>
-    <li class="nav-item ms-lg-2">
-        <a class="btn btn-outline-light d-flex align-items-center" asp-controller="Account" asp-action="Register">
-            <i class="bi bi-person-plus me-2"></i> Register
-        </a>
-    </li>
-}
-
+    @* STUDENT LOGGED IN CHECK *@
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item ms-lg-3">
+            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                <button type="submit" class="btn btn-danger d-flex align-items-center">
+                    <i class="bi bi-box-arrow-right me-2"></i> Logout
+                </button>
+            </form>
+        </li>
+    }
+    @* SUPERVISOR LOGGED IN CHECK *@
+    else if (HttpContextAccessor.HttpContext.Session.GetInt32("SupervisorId") != null)
+    {
+        <li class="nav-item ms-lg-3">
+            <form asp-controller="Supervisor" asp-action="Logout" method="post" class="d-inline">
+                <button type="submit" class="btn btn-danger d-flex align-items-center">
+                    <i class="bi bi-box-arrow-right me-2"></i> Supervisor Logout
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item ms-lg-3">
+            <a class="btn btn-outline-light d-flex align-items-center" asp-controller="Account" asp-action="Login">
+                <i class="bi bi-box-arrow-in-right me-2"></i> Login
+            </a>
+        </li>
+        <li class="nav-item ms-lg-2">
+            <a class="btn btn-outline-light d-flex align-items-center" asp-controller="Account" asp-action="Register">
+                <i class="bi bi-person-plus me-2"></i> Register
+            </a>
+        </li>
+    }
+</ul>

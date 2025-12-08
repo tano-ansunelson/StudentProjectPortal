@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentProjectPortal.Data;
 
@@ -11,9 +12,11 @@ using StudentProjectPortal.Data;
 namespace StudentProjectPortal.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251206203618_supervisor-created")]
+    partial class supervisorcreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,11 +160,8 @@ namespace StudentProjectPortal.Migrations
 
             modelBuilder.Entity("StudentProjectPortal.Models.SuperVisorUser", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("StaffId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Department")
                         .IsRequired()
@@ -179,11 +179,11 @@ namespace StudentProjectPortal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StaffId")
+                    b.Property<string>("SuperVisoor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("StaffId");
 
                     b.ToTable("SuperVisors");
                 });

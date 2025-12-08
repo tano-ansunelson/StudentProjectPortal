@@ -1,0 +1,92 @@
+﻿@model StudentProjectPortal.ViewModels.SuperVisorLoginViewModel
+@{
+    ViewBag.Title = "Supervisor Login";
+}
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center py-4"
+     style="padding-left: 40px; padding-right: 40px;">
+
+    <div class="row w-100 shadow-lg rounded-4 overflow-hidden"
+         style="max-width: 1100px; margin-left: auto; margin-right: auto; background: #1e1f24;">
+
+        <!-- LEFT: FORM -->
+        <div class="col-12 col-md-6 p-4 d-flex align-items-center justify-content-center"
+             style="background: #1e1f24;">
+
+            <div class="w-100" style="max-width: 420px;">
+
+                <!-- Title -->
+                <div class="text-center mb-4 text-white">
+                    <h2 class="fw-bold">Supervisor Login</h2>
+                    <p class="text-secondary">Enter your Staff ID and password to continue.</p>
+                </div>
+
+                <!-- FORM -->
+                <form asp-action="SuperVisorLogin" asp-controller="Supervisor" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- Staff ID -->
+                    <div class="mb-3">
+                        <label asp-for="StaffId" class="form-label text-white-50">Staff ID</label>
+                        <input asp-for="StaffId"
+                               class="form-control bg-dark text-white border-secondary rounded-3"
+                               placeholder="Enter your Staff ID" />
+                        <span asp-validation-for="StaffId" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-1">
+                        <label asp-for="Password" class="form-label text-white-50">Password</label>
+                        <input asp-for="Password" type="password"
+                               class="form-control bg-dark text-white border-secondary rounded-3"
+                               placeholder="Enter password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <!-- Forgot Password -->
+                    <div class="text-end mt-1">
+                        <a asp-action="ForgotPassword" asp-controller="Supervisor"
+                           class="text-success text-decoration-none small fw-semibold">
+                            Forgot Password?
+                        </a>
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-success py-2 fw-semibold rounded-3">
+                            Login
+                        </button>
+                    </div>
+
+                </form>
+
+                <!-- Register -->
+                <div class="text-center mt-4">
+                    <span class="text-white-50">Not registered yet?</span>
+                    <a asp-controller="Supervisor" asp-action="SuperVisorRegister"
+                       class="text-success fw-semibold text-decoration-none">
+                        Register
+                    </a>
+                </div>
+
+                <!-- Back to Home -->
+                <div class="text-center mt-2">
+                    <a asp-controller="Home" asp-action="Index"
+                       class="btn btn-outline-light btn-sm rounded-3">
+                        ← Back to Home
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- RIGHT: IMAGE -->
+        <div class="col-md-6 d-none d-md-block p-0">
+            <img src="~/images/hat.jpg"
+                 class="img-fluid h-100 w-100"
+                 style="object-fit: cover; filter: brightness(88%);" />
+        </div>
+
+    </div>
+</div>

@@ -1,9 +1,8 @@
-﻿@model StudentProjectPortal.ViewModels.RegisterViewModel
+﻿@model StudentProjectPortal.ViewModels.SuperVisorRegisterModel
 @{
-    ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    ViewBag.Title = "SuperVisorRegister";
+  
 }
-
 
 <div class="container min-vh-100 d-flex align-items-center justify-content-center py-4"
      style="padding-left: 40px; padding-right: 40px;">
@@ -21,8 +20,7 @@
                     <p class="text-secondary">Join Project Hub and manage your projects easily.</p>
                 </div>
 
-                <form asp-action="Register" asp-controller="Account" method="post" novalidate>
-
+                <form asp-action="SuperVisorRegister" asp-controller="Supervisor" method="post" novalidate>
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                     <!-- Full Name -->
@@ -44,7 +42,8 @@
                     <!-- Password -->
                     <div class="mb-3">
                         <label asp-for="Password" class="form-label text-white-50"></label>
-                        <input asp-for="Password" class="form-control bg-dark text-white border-secondary rounded-3"
+                        <input asp-for="Password" type="password"
+                               class="form-control bg-dark text-white border-secondary rounded-3"
                                placeholder="Enter password" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
@@ -52,48 +51,28 @@
                     <!-- Confirm Password -->
                     <div class="mb-3">
                         <label asp-for="ConfirmPassword" class="form-label text-white-50"></label>
-                        <input asp-for="ConfirmPassword" class="form-control bg-dark text-white border-secondary rounded-3"
+                        <input asp-for="ConfirmPassword" type="password"
+                               class="form-control bg-dark text-white border-secondary rounded-3"
                                placeholder="Confirm password" />
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
 
-                    <!-- Class -->
+                    <!-- Staff ID -->
                     <div class="mb-3">
-                        <label asp-for="ClassId" class="form-label text-white-50"></label>
-                        <input asp-for="ClassId" list="ClassList"
+                        <label asp-for="StaffId" class="form-label text-white-50">Staff ID</label>
+                        <input asp-for="StaffId"
                                class="form-control bg-dark text-white border-secondary rounded-3"
-                               placeholder="Select your level" />
-
-                        <datalist id="ClassList">
-                            <option value="Level 100" />
-                            <option value="Level 200" />
-                            <option value="Level 300" />
-                            <option value="Level 400" />
-                            <option value="Level 500" />
-                            <option value="Level 600" />
-                            <option value="Masters" />
-                            <option value="PhD" />
-                        </datalist>
-
-                        <span asp-validation-for="ClassId" class="text-danger"></span>
+                               placeholder="Your Staff ID" />
+                        <span asp-validation-for="StaffId" class="text-danger"></span>
                     </div>
 
-                    <!-- Program -->
+                    <!-- Department -->
                     <div class="mb-3">
-                        <label asp-for="Program" class="form-label text-white-50">Program</label>
-                        <input asp-for="Program"
+                        <label asp-for="Department" class="form-label text-white-50"></label>
+                        <input asp-for="Department"
                                class="form-control bg-dark text-white border-secondary rounded-3"
-                               placeholder="e.g. Computer Science" />
-                        <span asp-validation-for="Program" class="text-danger"></span>
-                    </div>
-
-                    <!-- Student ID -->
-                    <div class="mb-3">
-                        <label asp-for="StudentId" class="form-label text-white-50">Student ID</label>
-                        <input asp-for="StudentId"
-                               class="form-control bg-dark text-white border-secondary rounded-3"
-                               placeholder="Your Student ID" />
-                        <span asp-validation-for="StudentId" class="text-danger"></span>
+                               placeholder="Department" />
+                        <span asp-validation-for="Department" class="text-danger"></span>
                     </div>
 
                     <!-- SUBMIT BUTTON -->
@@ -107,7 +86,7 @@
                 <!-- FOOTER -->
                 <div class="text-center mt-4">
                     <span class="text-white-50">Already registered?</span>
-                    <a asp-controller="Account" asp-action="Login"
+                    <a asp-controller="Supervisor" asp-action="SuperVisorLogin"
                        class="btn btn-link text-success fw-semibold text-decoration-none">
                         Login
                     </a>
