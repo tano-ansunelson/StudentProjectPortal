@@ -41,7 +41,7 @@ namespace StudentProjectPortal.Controllers
                 {
                     TempData["SuccessMessage"] = "🎉 Welcome! Your account has been created successfully.";
 
-                    await userManager.AddToRoleAsync(users , "Student");
+                    //await userManager.AddToRoleAsync(users , "Student");
                     return RedirectToAction("Login", "Account");
                 }
                 else
@@ -179,7 +179,7 @@ namespace StudentProjectPortal.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
     }
