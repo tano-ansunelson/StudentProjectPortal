@@ -1,0 +1,60 @@
+﻿﻿@{
+ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portal - Home</title>
+
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-container">
+        <div class="hero-content">
+
+            <h1 class="hero-title">
+                Manage Your
+                <span class="highlight">Academic Projects</span>
+            </h1>
+
+            <p class="hero-description">
+                A centralized platform for students to submit assignments and
+                for supervisors to manage research projects efficiently.
+            </p>
+
+            <div class="portal-buttons">
+                <a asp-controller="Students" asp-action="Register" class="portal-btn primary">
+                    <span class="btn-icon">📖</span>
+                    <span>Student Portal</span>
+                </a>
+                <a asp-controller="Supervisor" asp-action="Registration" class="portal-btn secondary">
+                    <span class="btn-icon">👥</span>
+                    <span>Supervisor Portal</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual " style="width:450px;height:450px">
+            <div class="logo-circle ">
+                <div class="school-logo">
+                    <div class="laurel-wreath">
+                        <span>🌾</span>
+                        <span class="torch-icon">🔥</span>
+                        <span>🌾</span>
+                    </div>
+                    <div class="book-icon">📖</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="bg-body-tertiary">
+        @Html.Partial("_AdditionalPage")
+    </div>
+
+</body>
+</html>

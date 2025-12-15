@@ -1,0 +1,63 @@
+﻿
+<div class="modal fade" id="createProjectModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">Create New Project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form asp-controller="Projects" asp-action="Create" method="post" enctype="multipart/form-data">
+
+                <div class="modal-body">
+                    <!-- title-->
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Project Title</label>
+                        <input type="text" name="Title" class="form-control" required />
+                    </div>
+                    <!--description-->
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Description</label>
+                        <textarea name="Description" class="form-control" rows="4" required></textarea>
+                    </div>
+                
+                    <!--  Lelvel -->
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Target Level</label>
+                        <select name="Level" class="form-select" required>
+                            <option value="">Select Level</option>
+                            <option value="100">Level 100</option>
+                            <option value="200">Level 200</option>
+                            <option value="300">Level 300</option>
+                            <option value="400">Level 400</option>
+                        </select>
+                    </div>
+                    <!-- deadline-->
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Deadline</label>
+                        <input type="date" name="Deadline" class="form-control" required />
+                    </div>
+                    <!--file upload-->
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Attach File (Optional)</label>
+                        <input type="file" name="ProjectFile" class="form-control" />
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Create Project
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

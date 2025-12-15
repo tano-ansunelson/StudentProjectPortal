@@ -1,0 +1,60 @@
+﻿<div class="modal fade" id="gradeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">Grade Submission</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form asp-action="GradeSubmission" asp-controller="Supervisor" method="post">
+                <div class="modal-body">
+
+                    <input type="hidden" id="submissionId" name="submissionId">
+
+                    <label class="form-label text-dark">Select Grade</label>
+                    <select id="gradeValue" name="grade" class="form-select" required>
+                        <option value="">-- Select Grade --</option>
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="C+">C+</option>
+                        <option value="C">C</option>
+                        <option value="D+">D+</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                    </select>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Grade</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var gradeModal = document.getElementById('gradeModal');
+
+    gradeModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var submissionId = button.getAttribute('data-id');
+        var currentGrade = button.getAttribute('data-grade');
+
+        document.getElementById('submissionId').value = submissionId;
+
+        // Pre-select grade if exists
+        if (currentGrade) {
+            document.getElementById('gradeSelect').value = currentGrade;
+        } else {
+            document.getElementById('gradeSelect').selectedIndex = 0;
+        }
+    });
+</script>
+
+

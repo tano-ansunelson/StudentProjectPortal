@@ -1,0 +1,104 @@
+﻿@model List<StudentProjectPortal.Models.Submission>
+
+<div class="py-5 mt-4" style="background:#1a1a2e; min-height:100vh;">
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="mb-4">
+            <h2 class="text-white fw-bold">
+                Submissions for:
+                <span class="text-info">
+                    @(Model.Count > 0 ? Model.First().Project.Title : "No Submissions Yet")
+                </span>
+            </h2>
+            <p class="text-white-50">Total Submissions: @Model.Count</p>
+        </div>
+
+        <!-- TABLE -->
+        <div class="card rounded-4 shadow-lg"
+             style="background: linear-gradient(135deg,#1e1e30,#2a2a40);">
+
+            <div class="card-header py-3 text-white fw-bold"
+                 style="background:linear-gradient(90deg,#667eea,#764ba2);">
+                <div class="row">
+                    <div class="col-md-3">Student</div>
+                    <div class="col-md-2">Level</div>
+                    <div class="col-md-3">Submitted</div>
+                    <div class="col-md-2">File</div>
+                    <div class="col-md-2">Actions</div>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+
+                @foreach (var sub in Model)
+                {
+                    <div class="row py-4 px-3 border-bottom border-secondary border-opacity-25">
+
+                        <!-- Student -->
+                        <div class="col-md-3 text-white fw-semibold">
+                            @sub.Student.FullName
+                        </div>
+
+                        <!-- Level -->
+                        <div class="col-md-2">
+                            <span class="badge rounded-pill px-3 py-2"
+                                  style="background: rgba(102,126,234,0.2); color:#667eea;">
+                                Level @sub.Student.Level
+                            </span>
+                        </div>
+
+                        <!-- Date -->
+                        <div class="col-md-3 text-white-50">
+                            @sub.SubmissionDate.ToString("MMM dd, yyyy")
+                            <br />
+                            <small>@sub.SubmissionDate.ToString("dddd")</small>
+                        </div>
+
+                        <!-- File -->
+                        <div class="col-md-2">
+                            @if (!string.IsNullOrEmpty(sub.FilePath))
+                            {
+                                <a href="@sub.FilePath"
+                                   class="btn btn-sm rounded-pill fw-semibold px-3"
+                                   style="border:2px solid #00eaff; color:#00eaff;">
+                                    <i class="bi bi-download"></i> Download
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="text-white-50">No File</span>
+                            }
+                        </div>
+
+                        <!-- Grade Placeholder -->
+                        <div class="col-md-2 text-center">
+
+                            <button class="btn btn-sm w-100 fw-semibold rounded-pill"
+                                    style="background: @(string.IsNullOrEmpty(sub.Grade) ? "orange" : "linear-gradient(135deg,#667eea,#764ba2)"); color:white;"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#gradeModal"
+                                    data-id="@sub.Id"
+                                    data-grade="@sub.Grade">
+
+                                @if (string.IsNullOrEmpty(sub.Grade))
+                                {
+                                    <text>Grade</text>
+                                }
+                                else
+                                {
+                                    <text>Edit (@sub.Grade)</text>
+                                }
+                            </button>
+
+                        </div>
+
+
+                    </div>
+                }
+
+            </div>
+        </div>
+        <partial name="_GradeModal" />
+    </div>
+</div>
