@@ -127,6 +127,14 @@
                                         data-bs-target="#logoutModal">
                                     <i class="bi bi-box-arrow-right me-2"></i> Logout
                                 </button>
+
+                                </li>
+                                <li class="nav-item me-2">
+
+                                    <button class="btn btn-outline-light d-md-none" id="toggleSidebar">
+                                     ☰
+                                    </button>
+
                                 </li>
 
                                
@@ -145,6 +153,12 @@
                                      <i class="bi bi-person-circle me-2"></i>  
                                      Profile
                                    </a>
+                               </li>
+                               <li class="nav-item me-2">
+
+                                      <button class="btn btn-outline-light d-md-none" id="toggleSidebar">
+                                        ☰
+                                    </button>
                                </li>
 
                               <li class="nav-item">
@@ -167,22 +181,25 @@
         </nav>
 
     </header>
-
+    <div class="page-wrapper">
     <!-- Spacer to prevent content hiding behind navbar -->
     <div style="height: 80px;"></div>
        <partial name="_LogoutModal"/>
 
     <!-- Main Content -->
-    <main class="container my-4">
+    <main class="container my-4   ">
         @RenderBody()
     </main>
-  
-
+        <partial name="_Footer" />
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script>
+               document.getElementById("toggleSidebar")?.addEventListener("click", function () {
+            document.getElementById("sidebar")?.classList.toggle("show");
+        });
          const navbar = document.getElementById('mainNavbar');
 
         // Add scroll effect
@@ -194,9 +211,9 @@
             }
         });
     </script>
-
+   
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-<partial name="_Footer" />
+
 
 </html>

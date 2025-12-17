@@ -2,150 +2,153 @@
 @{
 
     ViewData["Title"] = "Supervisor Dashboard";
+   
 
 }
-<div class="container py-5">
+<div class="main-content">
+    <div class="container py-5">
+        <partial name="_SupervisorSidebar" />
 
-    <!-- Header -->
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5">
-        <div class="mb-3 mb-md-0">
-            <h2 class="fw-bold mb-1 text-white">Manage Projects</h2>
-            <p class="text-secondary">Oversee active research topics and student assignments</p>
+        <!-- Header -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5">
+            <div class="mb-3 mb-md-0">
+                <h2 class="fw-bold mb-1 text-white">Manage Projects</h2>
+                <p class="text-secondary">Oversee active research topics and student assignments</p>
+            </div>
+            <button class="btn btn-success mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createProjectModal">
+                + Create New Project
+            </button>
         </div>
-        <button class="btn btn-success mb-3"
-                data-bs-toggle="modal"
-                data-bs-target="#createProjectModal">
-            + Create New Project
-        </button>
-    </div>
-    <partial name="_EditProjectModal" />
-    <partial name="_DeleteProjectModal" />
+        <partial name="_EditProjectModal" />
+        <partial name="_DeleteProjectModal" />
 
-    <partial name="_modelCreate"/>
+        <partial name="_modelCreate"/>
   
 
-    <!-- Stats Section -->
-    <div class="row g-4 mb-5">
+        <!-- Stats Section -->
+        <div class="row g-4 mb-5">
 
-        <!-- Total Projects -->
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="p-4 rounded shadow-sm bg-secondary bg-opacity-25 border border-secondary h-100">
-                <div class="d-flex align-items-center">
-                    <span class="p-3 rounded-circle bg-primary bg-opacity-25 me-3">
-                        <i class="bi bi-kanban fs-3 text-primary"></i>
-                    </span>
-                    <div>
-                        <p class="text-secondary mb-1">Total Projects</p>
-                        <!--total code-->
-                        <h3 class="fw-bold text-white mb-0">@(Model==null ? 0: Model.Count())</h3>
+            <!-- Total Projects -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="p-4 rounded shadow-sm bg-secondary bg-opacity-25 border border-secondary h-100">
+                    <div class="d-flex align-items-center">
+                        <span class="p-3 rounded-circle bg-primary bg-opacity-25 me-3">
+                            <i class="bi bi-kanban fs-3 text-primary"></i>
+                        </span>
+                        <div>
+                            <p class="text-secondary mb-1">Total Projects</p>
+                            <!--total code-->
+                            <h3 class="fw-bold text-white mb-0">@(Model==null ? 0: Model.Count())</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Active Students -->
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="p-4 rounded shadow-sm bg-secondary bg-opacity-25 border border-secondary h-100">
-                <div class="d-flex align-items-center">
-                    <span class="p-3 rounded-circle bg-success bg-opacity-25 me-3">
-                        <i class="bi bi-people fs-3 text-success"></i>
-                    </span>
-                    <div>
-                        <p class="text-secondary mb-1">Active Students</p>
-                        <h3 class="fw-bold text-white mb-0">24</h3>
+            <!-- Active Students -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="p-4 rounded shadow-sm bg-secondary bg-opacity-25 border border-secondary h-100">
+                    <div class="d-flex align-items-center">
+                        <span class="p-3 rounded-circle bg-success bg-opacity-25 me-3">
+                            <i class="bi bi-people fs-3 text-success"></i>
+                        </span>
+                        <div>
+                            <p class="text-secondary mb-1">Active Students</p>
+                            <h3 class="fw-bold text-white mb-0">24</h3>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
-    </div>
+        <!-- Projects Table -->
+        <div class="card bg-dark border-secondary shadow-lg">
 
-    <!-- Projects Table -->
-    <div class="card bg-dark border-secondary shadow-lg">
+            <div class="card-header bg-transparent border-secondary py-3">
+                <h5 class="fw-bold text-white mb-0">Active Research Projects</h5>
+            </div>
 
-        <div class="card-header bg-transparent border-secondary py-3">
-            <h5 class="fw-bold text-white mb-0">Active Research Projects</h5>
-        </div>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0">
 
-        <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0">
+                    <thead class="table-secondary text-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Class</th>
+                            <th>Submissions</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
 
-                <thead class="table-secondary text-dark">
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Class</th>
-                        <th>Submissions</th>
-                        <th class="text-end">Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
+                    <tbody>
 
                 
-                    @foreach (var project in Model)
-                    {
-                        <tr>
-                            <td class="fw-semibold text-white">@project.Title</td>
+                        @foreach (var project in Model)
+                        {
+                            <tr>
+                                <td class="fw-semibold text-white">@project.Title</td>
 
-                            <td class="text-secondary">
-                                @project.Description
-                            </td>
+                                <td class="text-secondary">
+                                    @project.Description
+                                </td>
 
-                            <td>
-                                <span class="badge bg-light text-dark">
-                                 Level @project.Level
-                                </span>
-                            </td>
+                                <td>
+                                    <span class="badge bg-light text-dark">
+                                     Level @project.Level
+                                    </span>
+                                </td>
 
-                            <td>
-                                @(project.Submissions?.Count ?? 0)
-                            </td>
+                                <td>
+                                    @(project.Submissions?.Count ?? 0)
+                                </td>
 
-                            <td class="text-end">
+                                <td class="text-end">
 
-                                @* View *@
-                                <a asp-controller="Supervisor"
-                                   asp-action="ViewSubmissions"
-                                   asp-route-id="@project.Id"
-                                   class="text-info me-3">
-                                    <i class="bi bi-eye fs-5"></i>
-                                </a>
+                                    @* View *@
+                                    <a asp-controller="Supervisor"
+                                       asp-action="ViewSubmissions"
+                                       asp-route-id="@project.Id"
+                                       class="text-info me-3">
+                                        <i class="bi bi-eye fs-5"></i>
+                                    </a>
 
 
-                                @* Edit *@
-                              <button class="btn btn-link text-warning me-3 p-0"
-                                       data-bs-toggle="modal"
-                                       data-bs-target="#editProjectModal"
-                                       data-id="@project.Id"
-                                       data-title="@project.Title"
-                                       data-description="@project.Description"
-                                       data-level="@project.Level"
-                                       data-deadline="@project.DateCreated.ToString("yyy-MM-dd")">
-                                    <i class="bi bi-pencil-square fs-5"></i>
-                                </button>
+                                    @* Edit *@
+                                  <button class="btn btn-link text-warning me-3 p-0"
+                                           data-bs-toggle="modal"
+                                           data-bs-target="#editProjectModal"
+                                           data-id="@project.Id"
+                                           data-title="@project.Title"
+                                           data-description="@project.Description"
+                                           data-level="@project.Level"
+                                           data-deadline="@project.DateCreated.ToString("yyy-MM-dd")">
+                                        <i class="bi bi-pencil-square fs-5"></i>
+                                    </button>
 
-                                @* Delete *@
-                               <button class="btn btn-link text-bg-danger p-0" onclick="setDeleteProjectId(@project.Id)">
+                                    @* Delete *@
+                                   <button class="btn btn-link text-bg-danger p-0" onclick="setDeleteProjectId(@project.Id)">
 
-                                   <i class="bi bi-trash fs-5"></i>
+                                       <i class="bi bi-trash fs-5"></i>
 
-                               </button>
+                                   </button>
 
-                            </td>
-                        </tr>
-                    }
-                </tbody>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
 
                
 
-            </table>
+                </table>
+            </div>
         </div>
+
     </div>
-
 </div>
-
 <script>
     var editModal = document.getElementById('editProjectModal');
     editModal?.addEventListener('show.bs.modal', function (event) {
